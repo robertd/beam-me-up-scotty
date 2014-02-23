@@ -1,11 +1,13 @@
 Beam-me-up-Scotty
 ===========
 
-Perhaps Capt'n Kirk was a huge Instagram fan.
+Capt'n Kirk would be a huge Instagram fan. :)
 
-Instructions: Click anywhere on the map to show available images in the radius... or ask Scotty to beam you somewhere else by clicking on blue `Beam Me Up` button :). Also you can see in the realtime where other people are clicking on the map (red circles).
+Instructions: Click anywhere on the map to show available images in the radius (green circle)... or ask Scotty to beam you somewhere else by clicking on blue `Beam Me Up` button :). Also you can see in the realtime where other people are clicking on the map (red circles).
 
-Use `Hard Reset` button to delete complete "beaming" history and all users will instantly see the changes... thanks firebase.io :).  
+Use `Hard Reset` button to delete complete "beaming" history and all users will instantly see the changes... thanks firebase.io :).
+
+Each time you click on the map `Beam Me Up` button will show you the number of the results returned by the Instagram. Likewise, `Hard Reset` button will show you the total number of the results for all the users currently using the app.
 
 Cheers!!!
 
@@ -21,3 +23,4 @@ Libraries Referenced
 * [Bootstrap-map-js](https://github.com/Esri/bootstrap-map-js)
 * [jQuery](http://jquery.com/)
 * [Firebase](http://firebase.io)
+* [Font Awesome](http://fortawesome.github.io/)

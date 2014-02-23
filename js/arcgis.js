@@ -11,7 +11,7 @@ require(["esri/map", "esri/dijit/Scalebar", "http://esri.github.io/bootstrap-map
         firebase = new Firebase("https://beammeupscotty.firebaseio.com/"),
         otherScottiesLayer = new GraphicsLayer({id:"other-scotties", opacity: 0.5}),
         redFillColor = new Color([255, 6, 52, 0.1]), greenFillColor = new Color([152, 251, 152, 0.25]),
-        $results = $("#results");
+        $results = $("#results"), $globalResults = $("#global-results"), globalResults = 0;
     map.addLayer(otherScottiesLayer);
     map.infoWindow.resize(175, 250);
     //Event Binding
@@ -39,6 +39,8 @@ require(["esri/map", "esri/dijit/Scalebar", "http://esri.github.io/bootstrap-map
       var geoPoint = createGeoPoint({longitude: res.val().mapPoint.x, latitude: res.val().mapPoint.y }),
           mapPoint = geographicToMercator(geoPoint);
       drawBeam(geoPoint, redFillColor, otherScottiesLayer);
+      globalResults += res.val().data.length;
+      $globalResults.html(globalResults);
       $.each(res.val().data, function(k, data) { drawThumbnail(data, otherScottiesLayer); });
     });
 
@@ -63,7 +65,6 @@ require(["esri/map", "esri/dijit/Scalebar", "http://esri.github.io/bootstrap-map
         } else { map.graphics.add(new Graphic(point, new PictureMarkerSymbol("http://i57.tinypic.com/vhyh08.png", 50, 50))); }
       }).fail(function (jqXHR, res) { console.log("Request failed: " + res); });
     }
-
     function getDetails(data) {
       return {
           username: data.user.username,
@@ -81,15 +82,14 @@ require(["esri/map", "esri/dijit/Scalebar", "http://esri.github.io/bootstrap-map
     }
     function drawBeam(point, fillColor, graphicLayer) { graphicLayer.add(createBeam(point, fillColor)); }
     function clearAll() {
-      $results.empty(); //clear the badge
+      globalResults = 0;
+      $results.empty(); $globalResults.empty(); //clear the badges
       map.infoWindow.hide(); //close any visible info templates
       map.graphics.clear(); //clear own graphics
       otherScottiesLayer.clear(); //clear other realtime graphics
     }
     function createThumbnailGraphic(details) { return new Graphic(createGeoPoint(details.location), createPictureMarkerSymbol(details.thumbnailUrl), {}, createInfoTemplate(details)); }
-    function drawThumbnail(details, graphicLayer) { 
-      graphicLayer.add(createThumbnailGraphic(details)); 
-    }
+    function drawThumbnail(details, graphicLayer) { graphicLayer.add(createThumbnailGraphic(details)); }
     function mercatorToGeographic(mapPoint) { return webMercatorUtils.webMercatorToGeographic(mapPoint); }
     function geographicToMercator(mapPoint) { return webMercatorUtils.geographicToWebMercator(mapPoint); }
     function createPictureMarkerSymbol(imageUrl) { return new PictureMarkerSymbol(imageUrl, 25, 25); }

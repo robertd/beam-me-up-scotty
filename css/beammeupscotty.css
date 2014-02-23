@@ -15,13 +15,13 @@
 }
 
 .navbar-border: {
-	border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
 
 #controls {
- 	display: block;
-  	position: absolute;
-  	z-index: 2;
-  	top: 55px;
-  	right: 10px;
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 55px;
+  right: 10px;
 }
