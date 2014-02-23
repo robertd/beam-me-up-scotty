@@ -1,7 +1,7 @@
 Beam-me-up-Scotty
 ===========
 
-Perhaps Capt'n Kirk was a huge Instagram fan.
+Perhaps Capt'n Kirk was a huge Instagram fan. :)
 
 Instructions: Click anywhere on the map to show available images in the radius... or ask Scotty to beam you somewhere else by clicking on blue `Beam Me Up` button :). Also you can see in the realtime where other people are clicking on the map (red circles).
 
